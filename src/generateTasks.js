@@ -25,8 +25,8 @@ module.exports = function generateTasks(config, relFiles) {
 
     const fileList = micromatch(
       files
-        // Only worry about children of the CWD
-        .filter(file => pathIsInside(file, cwd))
+        // Only worry about children of the git root
+        .filter(file => pathIsInside(file, gitDir))
         // Make the paths relative to CWD for filtering
         .map(file => path.relative(cwd, file)),
       patterns,
